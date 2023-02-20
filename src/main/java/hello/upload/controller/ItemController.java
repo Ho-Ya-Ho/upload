@@ -60,12 +60,14 @@ public class ItemController {
         return "item-view";
     }
 
+    //Image 표시
     @ResponseBody
     @GetMapping("images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
         return new UrlResource("file:" + fileStore.getFullPath(filename));
     }
 
+    //File download
     @GetMapping("/attach/{itemId}")
     public ResponseEntity<Resource> downloadAttach(@PathVariable Long itemId) throws MalformedURLException {
         Item item = itemRepository.findById(itemId);
